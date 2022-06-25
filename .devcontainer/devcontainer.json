@@ -37,6 +37,8 @@
 	"extensions": [
 		"rebornix.ruby",
 		"kaiwood.endwise",
-		"sibiraj-s.vscode-scss-formatter"
+		"sibiraj-s.vscode-scss-formatter",
+		"bung87.rails",
+		"aki77.rails-db-schema"
 	]
 }
