@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   end
 
   def show
-  # @task=Task.find(params[:id])
+    @task=Task.find(params[:id])
   end
 
   def new
@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.cretate(post_params)
+    Task.create(post_params)
     redirect_to '/tasks/index'
   end
 
@@ -27,4 +27,11 @@ class TasksController < ApplicationController
 
   def destroy
   end
+
+  private
+  def post_params
+    params.require(:task).permit(:title, :content)
+  end
+
 end
+
