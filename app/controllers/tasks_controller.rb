@@ -17,12 +17,13 @@ class TasksController < ApplicationController
   end
 
   def edit
-
+    @task=Task.find(params[:id])
   end
 
-
-
   def update
+    @task=Task.find(params[:id])
+    Task.update()
+    redirect_to '/task/index'
   end
 
   def destroy
