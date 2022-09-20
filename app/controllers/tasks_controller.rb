@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
   def create
     Task.create(post_params)
-    redirect_to '/tasks/index'
+    redirect_to '/tasks'
   end
 
   def edit
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   def update
     @task=Task.find(params[:id])
     Task.update()
-    redirect_to '/task/index'
+    redirect_to '/task'
   end
 
   def destroy
