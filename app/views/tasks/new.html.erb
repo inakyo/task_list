@@ -2,7 +2,11 @@
 <p>Find me in app/views/tasks/new.html.erb</p>
 
 <%= form_with model: @task do |t| %>
+  タイトル：
   <%= t.text_field :title, placeholder: :タイトル %>
+  <br>
+  本文
   <%= t.text_field :content, placeholder: :本文 %>
+  <br>
   <%= t.submit '投稿する' %>
 <% end %>
