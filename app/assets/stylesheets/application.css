@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+table {
+  background-color: #cdefff; /* 背景色指定 */
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: solid 1px;
+}
