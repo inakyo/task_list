@@ -13,6 +13,7 @@ class TasksController < ApplicationController
 
   def create
     Task.create(post_params)
+    flash[:notice] = "タスクを作成しました"
     redirect_to '/tasks'
   end
 

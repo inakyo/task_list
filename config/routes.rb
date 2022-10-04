@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'sessions/index'
-  post 'sessions/index'
+  get  'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   resources :users
   resources :tasks
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

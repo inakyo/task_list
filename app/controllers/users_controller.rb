@@ -18,8 +18,9 @@ class UsersController < ApplicationController
 
   def create
     if User.create(user_params)
-      redirect_to :tasks#index, notice: "ユーザを作成しました、"
-    else
+      flash[:SUCCESS] = "ユーザを作成しました、"
+      redirect_to controller: :tasks, action: :index, notice: 
+      
       @notice = "ユーザ作成に失敗しました"
       redirect_to :users#new
     end
