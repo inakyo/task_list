@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    flash[:FAILED] = "ログアウトしました"
+    flash[:SUCCESS] = "ログアウトしました"
     session[:user_name] = nil
     render :new
   end

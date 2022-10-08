@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_action :check_role
 
   def index
-    if session[:role] != 0
-      redirect_to :tasks#index
-    end
+#    if session[:role] != 0
+#      redirect_to :tasks#index
+#    end
     @users=User.all
   end
 
@@ -17,11 +17,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    if User.create(user_params)
-      flash[:SUCCESS] = "ユーザを作成しました、"
-      redirect_to controller: :tasks, action: :index, notice: 
-      
-      @notice = "ユーザ作成に失敗しました"
+    @user = User.new(user_params)
+    if @user.save  
+      flash[:SUCCESS] = "#{params[:user][:name]}ユーザを作成しました。"
+      redirect_to :tasks
+    else
+      flash[:FAILRE] = "ユーザを作成しました。#{}"
       redirect_to :users#new
     end
   end
