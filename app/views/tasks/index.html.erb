@@ -1,24 +1,32 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
-
-<%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %>
+<h1> Tasks#index </h1>
 
 <% flash.each do |key, value| %>
 <p>キー名：<%= key %>
 <p>バリュー：<%= value%>
+<br>
 <% end %>
 
-<%= link_to "新規登録" , controller: "tasks" , action: "new" %>
+
+<%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %>
+
+<%= link_to "新規登録" , controller: :tasks , action: :new %>
+
+<% if @userrole == "admin"%>
+  <%= link_to "ユーザー一覧", controller: :users, action: :index %>
+<% end %>
+
 
   <table>
     <tr>
       <th>タイトル</th>
       <th>本文</th>
+      <th>ユーザーid</yd>
     </tr>
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
+        <td><%= task.user_id %></td>
       </tr>
     <% end %>
   </table>

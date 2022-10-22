@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
-    if session[:user_name]
-      flash[:notice] = "#{session[:user_name]}でログインしています"
+    if session[:username]
+      flash[:notice] = "#{session[:username]}でログインしています"
       redirect_to :tasks 
     end
   end
@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
     if params.key?(:name) || params.key?(:password)
       user = User.find_by(name: params[:name])
       if user && user.authenticate(params[:password])
-        session[:user_name] = params[:name]
-        flash[:SUCCESS] = "#{session[:user_name]}でログインしました"
+        session[:username] = params[:name]
+        flash[:SUCCESS] = "#{session[:username]}でログインしました"
         redirect_to :tasks
       else
         flash[:FAILED] = "ログインに失敗しました"
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   
   def destroy
     flash[:SUCCESS] = "ログアウトしました"
-    session[:user_name] = nil
+    session = nil
     render :new
   end
 end
