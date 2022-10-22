@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
-before_action :check_user
+before_action :check_session
+before_action :check_current_user
 
   def index
-    @tasks=Task.all
+    @tasks=@current_user.tasks.all
   end
 
   def show
@@ -14,7 +15,7 @@ before_action :check_user
   end
 
   def create
-    @task = Task.new(post_params)
+    @task = @current_user.tasks.new(post_params)
     if @task.save
     flash[:SUCCESS] = "#{params[:task][:title]}タスクを作成しました"
     redirect_to '/tasks'
@@ -38,8 +39,12 @@ before_action :check_user
   end
 
   private
-  def check_user
-    redirect_to '/login' unless session[:user_name].presence
+  def check_session
+    redirect_to '/login' unless session[:username].presence
+  end
+
+  def check_current_user
+    @current_user = User.find_by(name: session[:username])
   end
 
   def post_params

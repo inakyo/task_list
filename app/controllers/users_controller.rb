@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
-  before_action :check_role
+  before_action :check_role, only: [:index]
 
   def index
-#    if session[:role] != 0
-#      redirect_to :tasks#index
-#    end
-    @users=User.all
+    p "userrole" + @userrole
+    case @userrole
+    when "admin" then
+      @users=User.all
+    when "user" then
+      flash[:ERROR] = "権限がありません"
+      redirect_to :tasks
+    else
+      flash[:ERROR] = "ログインしてください"
+      redirect_to :tasks
+    end
   end
 
   def show
@@ -43,7 +50,7 @@ class UsersController < ApplicationController
   private
 
   def check_role
-    
+    @userrole = User.find_by(name: session[:username]).role
   end
 
   def user_params
