@@ -1,0 +1,11 @@
+<h1>新規登録</h1>
+
+<%= form_with model: @user do |u| %>
+氏名： <%= u.text_field :name %>
+<br>
+パスワード：<%= u.password_field :password %>
+<br>
+役割：<%= u.select :role, User.roles.keys.to_a, {}, class: 'form-control' %>
+<%= u.submit '登録' %>
+<%= @notice %>
+<% end %>

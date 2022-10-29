@@ -1,2 +1,14 @@
 <h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+
+<table>
+  <tr>
+      <th>タイトル</th>
+    <th>本文</th>
+    <th>ユーザー名</th>
+  </tr>
+    <tr>
+      <td><%= link_to task.title, task_path(task.id) %> </td>
+      <td><%= task.content %></td>
+      <td><%= @current_user.name %></td>
+    </tr>
+</table>
