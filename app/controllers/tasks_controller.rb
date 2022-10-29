@@ -3,6 +3,7 @@ before_action :check_session
 before_action :check_current_user
 
   def index
+    @current_user
     @tasks=@current_user.tasks.all
   end
 
