@@ -1,14 +1,20 @@
 <h1>Tasks#show</h1>
 
+<%= link_to "一覧に戻る", tasks_path%>
+
+<%= link_to "削除", task_path(@task.id), action: :destroy %>
+
 <table>
   <tr>
-      <th>タイトル</th>
+    <th>タイトル</th>
     <th>本文</th>
     <th>ユーザー名</th>
+    <th>登録日時</th>
   </tr>
-    <tr>
-      <td><%= link_to task.title, task_path(task.id) %> </td>
-      <td><%= task.content %></td>
-      <td><%= @current_user.name %></td>
-    </tr>
+  <tr>
+    <td><%= @task.title %> </td>
+    <td><%= @task.content %></td>
+    <td><%= @current_user.name %></td>
+    <td><%= @task.updated_at %></td>
+  </tr>
 </table>
