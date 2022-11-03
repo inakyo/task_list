@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    puts "#{session[:username]}でログインしています"
     if session[:username]
       flash[:notice] = "#{session[:username]}でログインしています"
       redirect_to :tasks
@@ -23,8 +22,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session = nil
+    session.clear
     flash[:SUCCESS] = "ログアウトしました"
-    render :new
+    #p "session=" + session
+    redirect_to login_path
   end
 end
