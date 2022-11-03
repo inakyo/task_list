@@ -61,3 +61,5 @@ gem 'solargraph'
 gem 'pry-rails'
 
 gem 'rufo'
+
+gem 'htmlbeautifier'
