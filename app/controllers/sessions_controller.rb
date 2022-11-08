@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
       user = User.find_by(name: params[:name])
       if user && user.authenticate(params[:password])
         session[:username] = params[:name]
-        session[:userrole] = user.role
         flash[:SUCCESS] = "#{session[:username]}でログインしました"
         redirect_to :tasks
       else
