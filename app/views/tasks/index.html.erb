@@ -9,10 +9,14 @@
 <p>バリュー：<%= value%></p>
 <br>
 <% end %>
-<!--
+
 <%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %>
--->
+
 <%= link_to "新規登録" , controller: :tasks , action: :new %>
+
+<% if @current_user.role == "admin"%>
+<%= link_to "ユーザー一覧", users_path %>
+<% end %>
 
 <table>
   <tr>
