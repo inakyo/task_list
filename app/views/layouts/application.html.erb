@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AppName</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>tasklist</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <header>
+    <!-- show header every user role -->
+    <% unless current_page?(login_path)  %>
+    <%= link_to "タスク一覧", tasks_path, id: "logo" %>
+    <% if session[:userrole] == "admin"  %>
+    <%= link_to "ユーザ一覧", users_path, id: "logo" %>
+    <% end %>
+    <% unless session[:username].nil?  %>
+    <%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %>
+    <% end %>
+    <% end %>
+  </header>
+  <%= yield %>
+</body>
+
+
+<footer>
+  <% unless current_page?(login_path)  %>
+  <%= p "フッター" %>
+  <% end %>
+</footer>
+
 </html>
