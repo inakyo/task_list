@@ -19,6 +19,9 @@
     <% if session[:userrole] == "admin"  %>
     <%= link_to "ユーザ一覧", users_path, id: "logo" %>
     <% end %>
+    <% unless session[:username].nil?  %>
+    <%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %>
+    <% end %>
     <% end %>
   </header>
   <%= yield %>
