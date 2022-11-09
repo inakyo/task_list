@@ -1,0 +1,60 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+header {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  align-items: center;
+  color: white;
+}
+
+/*
+.header-link {
+  font-size: 30px;
+}
+*/
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table {
+  background-color: #e0edf2; /* 背景色指定 */
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: solid 1px;
+  text-align: center;
+}
+
+footer {
+  position: absolute; /*←絶対位置*/
+  bottom: 0; /*下に固定*/
+  display: flex;
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  align-items: end;
+}
+
+.footer-text {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
