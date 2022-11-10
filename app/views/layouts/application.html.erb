@@ -12,26 +12,42 @@
 </head>
 
 <body>
-  <header>
-    <!-- show header every user role -->
-    <% unless current_page?(login_path)  %>
-    <%= link_to "タスク一覧", tasks_path, id: "logo" %>
-    <% if session[:userrole] == "admin"  %>
-    <%= link_to "ユーザ一覧", users_path, id: "logo" %>
-    <% end %>
-    <% unless session[:username].nil?  %>
-    <%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %>
-    <% end %>
-    <% end %>
+  <header class="sticky-top">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- show header every user role -->
+          <% unless current_page?(login_path)  %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><%= link_to "タスク一覧", tasks_path %></li>
+            <% if session[:userrole] == "admin"  %>
+            <li class="nav-item"><%= link_to "ユーザ一覧", users_path %></li>
+            <% end %>
+            <% unless session[:username].nil?  %>
+            <li class="nav-item">
+              <%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %></li>
+            <% end %>
+          </ul>
+          <% end %>
+        </div>
+        <ul class="navbar-nav">
+          <% unless session[:username].nil? %>
+          <li> user:[ <%= session[:username] %> ] <br>
+            role:[ <%= session[:userrole] %> ] </li>
+          <% end%>
+        </ul>
+      </div>
+    </nav>
   </header>
-  <%= yield %>
+  <div class="container-fluid">
+    <%= yield  %>
+  </div>
 </body>
 
 
 <footer>
-  <% unless current_page?(login_path)  %>
-  <%= p "フッターa" %>
-  <% end %>
+  <p> <span class="footer-text"> inakyo Task list </span> </p>
 </footer>
 
 </html>
