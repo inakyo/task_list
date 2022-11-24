@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    puts "#{session[:username]}でログインしています".encoding
+    puts "#{session[:username]}でログインしています"
     if params.key?(:name) || params.key?(:password)
       user = User.find_by(name: params[:name])
       if user && user.authenticate(params[:password])
-        session[:username] = params[:name]
+        session[:username] = user.name
         session[:userrole] = user.role
         flash[:SUCCESS] = "#{session[:username]}でログインしました"
         redirect_to :tasks
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   def destroy
     session.clear
     flash[:SUCCESS] = "ログアウトしました"
-    #p "session=" + session
+    p session[:userrole]
     redirect_to login_path
   end
 end
