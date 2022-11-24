@@ -1,8 +1,6 @@
-<h1>Tasks#show</h1>
-
 <%= link_to "一覧に戻る", tasks_path%>
 
-<%= link_to "削除", task_path(@task.id), action: :destroy %>
+<%= link_to "削除", task_path(@task.id), method: :delete, class: "btn btn-sm btn-danger" %>
 
 <table>
   <tr>
