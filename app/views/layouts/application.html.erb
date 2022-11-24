@@ -2,52 +2,65 @@
 <html>
 
 <head>
-  <title>AppName</title>
+  <title>Test</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 </head>
 
 <body>
-  <header class="sticky-top">
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- show header every user role -->
-          <% unless current_page?(login_path)  %>
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><%= link_to "タスク一覧", tasks_path %></li>
-            <% if session[:userrole] == "admin"  %>
-            <li class="nav-item"><%= link_to "ユーザ一覧", users_path %></li>
-            <% end %>
-            <% unless session[:username].nil?  %>
-            <li class="nav-item">
-              <%= link_to "ログアウト", logout_path , method: :delete, controller: :sessions , action: :destroy %></li>
-            <% end %>
-          </ul>
-          <% end %>
-        </div>
-        <ul class="navbar-nav">
-          <% unless session[:username].nil? %>
-          <li> user:[ <%= session[:username] %> ] <br>
-            role:[ <%= session[:userrole] %> ] </li>
-          <% end%>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "タスク一覧", tasks_path, class: "nav-link" %>
+        </li>
+        <!-- Dropdown うまくいかない...
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        -->
+        <% if session[:userrole] = "admin" %>
+        <li class="nav-item">
+          <%= link_to "ユーザ一覧", users_path, class: "nav-link" %>
+        </li>
+        <% end %>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <% unless session[:username].nil? %>
+        <p class="navbar-text"> user: <%= session[:username] %> role: <%= session[:userrole] %> </p>
+        <li class="nav-item">
+          <%= link_to "ログアウト", logout_path, class: "nav-link" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
     <%= yield  %>
   </div>
 </body>
 
-
 <footer>
-  <p> <span class="footer-text"> inakyo Task list </span> </p>
+  <div class="container-fluid">
+    <p class="footer-text">inakyo Task list</p>
+  </div>
 </footer>
 
 </html>
